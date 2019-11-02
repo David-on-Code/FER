@@ -1,3 +1,3 @@
-Probabilistic Face Embeddings
-Abstract
+# Probabilistic Face Embeddings
+### Abstract
 通过在潜在语义空间中比较面部特征，嵌入方法已在面部识别中取得成功。但是，在完全不受约束的人脸设置中，嵌入模型学习到的人脸特征可能是模棱两可的，甚至可能不存在于输入人脸中，从而导致嘈杂的表示。我们提出了ProbabilisticFace Embeddings（PFE），将每个人脸图像表示为潜在空间中的高斯分布。分布的均值估计最可能的特征值，而方差显示特征值的不确定性。
