@@ -11,4 +11,6 @@ LBP, LBP-TOP,directional mean optical flow feature
 CNN, RNN, combinations of CNN and RNN.
 ##### LITERATURE REVIEW  
 ##### MicroExpSTCNN considers full face as the input  
+![F1_MicroExpSTCNN](https://github.com/David-on-Code/Facial-expression-recognizition/blob/master/3D-CNN/F1_MicroExpSTCNN.png)
 ##### MicroExpFuseNet considers the eyes and mouth regions as the inputs  
+![F2]()
