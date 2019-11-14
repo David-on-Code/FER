@@ -12,5 +12,7 @@ CNN, RNN, combinations of CNN and RNN.
 ##### LITERATURE REVIEW  
 ##### MicroExpSTCNN considers full face as the input  
 ![F1_MicroExpSTCNN](https://github.com/David-on-Code/Facial-expression-recognizition/blob/master/3D-CNN/F1_MicroExpSTCNN.png)
+![Table1](https://github.com/David-on-Code/Facial-expression-recognizition/blob/master/3D-CNN/Table_MicroExpSTCNN.jpeg)
+![code](https://github.com/David-on-Code/Facial-expression-recognizition/blob/master/3D-CNN/Code_MicroExpSTCNN.jpg)
 ##### MicroExpFuseNet considers the eyes and mouth regions as the inputs  
 ![F2]()
