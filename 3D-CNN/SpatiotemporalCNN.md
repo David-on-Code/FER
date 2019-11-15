@@ -24,7 +24,7 @@ Table II reports the network architecture of the proposed Intermediate MicroExp-
 ![F3](https://github.com/David-on-Code/Facial-expression-recognizition/blob/master/3D-CNN/F3_Immediate_MicroExpFuseNet.png)
 Table III presents the network architecture of the proposed Late MicroExpFuseNet model in terms of the filter dimension and the output dimension of different layers. In Table III, the input dimension is considered for the CAS(ME)?2 dataset.  
 ![Table3](https://github.com/David-on-Code/Facial-expression-recognizition/blob/master/3D-CNN/Table3.png)
-### samples
+### Samples
 Table IV shows the expression levels and the number of video samples present in the respective datasets.  
 ![Table4](https://github.com/David-on-Code/Facial-expression-recognizition/blob/master/3D-CNN/Table4.png)
 ### COMPARISON
