@@ -9,9 +9,16 @@ The majority of the traditional methods have used handcraftedfeatures or shallow
 
 ### 深度面部表情识别  
 #### pre-processing  
+##### face alignment  
 背景、光照、头姿势。需要进行预处理以对齐和标准化人脸传达的视觉语义信息。  
+尽管人脸检测是实现特征学习的唯一必不可少的过程，但使用局部界标的坐标进行进一步的人脸对齐可以显着提高FER性能。此步骤至关重要，因为它可以减少面部比例和面内旋转度的变化。表2研究了深度FER中广泛使用的面部界标检测算法，并从效率和性能方面对它们进行了比较。![表2](https://github.com/David-on-Code/Facial-expression-recognizition/blob/master/Datasets/Table2.jpg)    
 尽管人脸检测是实现特征学习的唯一必不可少的过程，但使用局部界标的坐标进行进一步的人脸对齐可以显着提高FER性能。此步骤至关重要，因为它可以减少面部比例和面内旋转度的变化。表2研究了深度FER中广泛使用的面部界标检测算法，并从效率和性能方面对它们进行了比较。![表2](https://github.com/David-on-Code/Facial-expression-recognizition/blob/master/Datasets/Table2.jpg)  
-
+总的来说，级联回归已经成为最流行的，最先进的人脸对齐方法，因为它具有很高的速度和准确性。  
+与仅使用一个检测器进行面部对齐相比，一些方法提出了在挑战性不受约束的环境中处理面部时，将多个检测器组合在一起以进行更好的地标估计的方法。Yu等串联了三个不同的标注探测器，以相互补充。Kim等考虑了不同的输入（原始图像和直方图均衡化的图像）和不同的面部检测模型（V＆J和MoT），因此选择了由Intraface提供的具有最高置信度的标注集。  
+##### Data augmentation  
+深度神经网络需要足够的训练数据以确保可通用性达到给定的识别任务。然而，大多数FER数据集没有足够的数据集用来训练。因此，数据增强是深度FER的重要步骤。数据增强技术可以分为两类：动态数据增强和离线数据增强。  
+通常，实时数据扩充被嵌入在深度学习工具包中，以减轻过度拟合的风险。在训练步骤中，从图像的四个角和中心随机裁剪输入样本，然后将其水平翻转，从而可以得到比原始训练数据大十倍的数据集。在测试过程中采用两种常见的预测模式：仅使用面部的中心补丁进行预测，或者预测值是所有十种crops的平均值。  
+除了基本的实时数据扩充外，还设计了各种离线数据扩充操作，以进一步扩展数据的大小和分散性。最常用的操作包括随机扰动和变换，例如旋转，移位，偏斜，缩放，噪声，对比度和色彩抖动。例如，采用常见的噪声模型，盐和胡椒和斑点噪声和高斯噪声来扩大数据大小。为了进行对比度转换，每个像素的饱和度和值（HSV色彩空间的S和V分量）都会更改，以进行数据增强。多种操作的结合可以生成更多看不见的训练样本，并使网络对于偏斜和旋转的脸部更加健壮。此外，基于深度学习的技术可以应用于数据扩充。例如，具有3D卷积神经网络（CNN）的合成数据生成系统，以创建具有不同饱和度表情的人脸。
 #### deep feature learing
 #### deep feature classification
 ![overview of datasets](https://github.com/David-on-Code/Facial-expression-recognizition/blob/master/Datasets/WeChatee3dfadaf56be8150efceab7948523e7.png)
