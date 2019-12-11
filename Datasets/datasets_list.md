@@ -12,7 +12,6 @@ The majority of the traditional methods have used handcraftedfeatures or shallow
 ##### face alignment  
 背景、光照、头姿势。需要进行预处理以对齐和标准化人脸传达的视觉语义信息。  
 尽管人脸检测是实现特征学习的唯一必不可少的过程，但使用局部界标的坐标进行进一步的人脸对齐可以显着提高FER性能。此步骤至关重要，因为它可以减少面部比例和面内旋转度的变化。表2研究了深度FER中广泛使用的面部界标检测算法，并从效率和性能方面对它们进行了比较。![表2](https://github.com/David-on-Code/Facial-expression-recognizition/blob/master/Datasets/Table2.jpg)    
-尽管人脸检测是实现特征学习的唯一必不可少的过程，但使用局部界标的坐标进行进一步的人脸对齐可以显着提高FER性能。此步骤至关重要，因为它可以减少面部比例和面内旋转度的变化。表2研究了深度FER中广泛使用的面部界标检测算法，并从效率和性能方面对它们进行了比较。![表2](https://github.com/David-on-Code/Facial-expression-recognizition/blob/master/Datasets/Table2.jpg)  
 总的来说，级联回归已经成为最流行的，最先进的人脸对齐方法，因为它具有很高的速度和准确性。  
 与仅使用一个检测器进行面部对齐相比，一些方法提出了在挑战性不受约束的环境中处理面部时，将多个检测器组合在一起以进行更好的地标估计的方法。Yu等串联了三个不同的标注探测器，以相互补充。Kim等考虑了不同的输入（原始图像和直方图均衡化的图像）和不同的面部检测模型（V＆J和MoT），因此选择了由Intraface提供的具有最高置信度的标注集。  
 ##### Data augmentation  
