@@ -11,7 +11,7 @@ The majority of the traditional methods have used handcraftedfeatures or shallow
 pre-processing,  
 背景、光照、头姿势。需要进行预处理以对齐和标准化人脸传达的视觉语义信息
 deep feature learing, deep feature classification
-![overview of datasets](Datasets/WeChatee3dfadaf56be8150efceab7948523e7.png)
+![overview of datasets](https://github.com/David-on-Code/Facial-expression-recognizition/blob/master/Datasets/WeChatee3dfadaf56be8150efceab7948523e7.png)
 [CK+](http://www.pitt.edu/~emotion/ck-spread.htm)  
 [MMI](https://mmifacedb.eu/)  
 [JAFFE](http://www.kasrl.org/jaffe.html)  
