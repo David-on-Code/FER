@@ -55,6 +55,46 @@ RNN是一种捕获时间信息的连接主义模型，更适合于具有任意�
 一种新颖的CNN架构,HoloNet是为FER设计的，其中CReLU与强大的残差结构结合使用可在不降低效率的情况下增加网络深度，并且具有初始残差块，是专为FER设计的，用于学习多尺度特征以捕获表达式中的变化。引入了另一种CNN模型，即监督评分系统（SSE），以提高FER的监督程度，在主流CNN的早期隐藏层中嵌入了三种类型的监督块，分别用于浅，中和深层监督。 见图6（a））  
 CNN中的传统softmax损失层只是迫使不同类别的特征保持分离，但是现实世界中的FER不仅遭受类别间相似性高而且类别内部变异高的困扰。因此，一些工作提出了用于FER的新颖的损耗层。受中心损失的启发，该损失惩罚了深部特征与其对应的类中心之间的距离，提出了两种变体来协助对softmax损失进行监督，以对FER进行更多区分：（1）正式确定了岛损失以进一步增加成对将不同类别中心之间的距离（见图6（b））和（2）保留位置的损失（LP损失）形式化，以将同一类别的局部邻近特征拉在一起，以便每个类别的内部类集群类很紧凑。此外，基于三重态损失[169]，这需要一个正例比一个固定间隔的负例更接近锚点，提出了两种变体来替代或帮助监督softmax损失：（1）指数基于三重态的损失[145]被正式确定为在更新网络时给困难的样本更大的权重，（2）（N + M）-元组聚类损失[77]被正式确定为减轻锚点选择和阈值验证的难度身份不变FER的三元组丢失（有关详细信息，请参见图6（c））。此外，提出了特征损失，以在早期训练阶段为深度特征提供补充信息。  
 ![图6](https://github.com/David-on-Code/Facial-expression-recognizition/blob/master/Datasets/Fig6.png)  
+#### Network ensemble
+先前的研究表明，多个网络的组合可以胜过单个网络。在实现网络集成时，应考虑两个关键因素：（1）网络的多样性足以确保互补性；（2）可以有效地聚合committee networks的适当集成方法。  
+在第一个因素方面，考虑使用不同种类的训练数据和不同的网络参数或体系结构来生成不同的委员会。几种预处理方法，例如变形和归一化以及第4.1.2节中描述的方法可以生成不同的数据来训练各种网络。通过更改过滤器的大小，神经元数量和网络层数，并应用多个随机种子进行权重初始化，网络的多样性也可以得到增强。此外，可以使用不同的网络架构来增强多样性。例如，将以监督方式训练的CNN和以非监督方式训练的卷积自动编码器（CAE）结合起来用于网络集成。  
+对于第二个因素，委员会网络的每个成员可以在两个不同的级别进行组装：特征级别和决策级别。对于特征级集合，最普遍采用的策略是连接从不同网络中学习的特征。例如，将从不同网络学习的级联特征获取单个特征向量来描述输入图像，(see Fig.7(a))。
+![Fig7](https://github.com/David-on-Code/Facial-expression-recognizition/tree/master/Datasets/Fig7.png)  
+#### Multitask networks  
+许多现有的FER网络专注于单个任务和学习功能，这些功能对表达式很敏感，却没有考虑其他潜在因素之间的相互作用。然而，在现实世界中，FER与各种因素交织在一起，例如头部姿势，照明和受试者身份（面部形态）。为了解决这个问题，引入了多任务学习以从其他相关任务中转移知识并消除干扰因素。
+#### Cascaded networks  
+
+####  Deep FER networks for dynamic image sequences  
+
+#### Frame aggregation  
+
+#### Expression Intensity network  
+大多数方法专注于识别峰值高强度表情，而忽略了细微的较低强度表情。在本节中，我们介绍了表情强度不变网络，该网络将具有不同强度的训练样本作为输入，以利用强度变化的序列的表情之间的内在联系。  
+在表达强度不变的网络中，带有强度标签的图像帧用于训练。 在测试过程中，表达强度变化的数据用于验证网络的强度不变能力。 赵等。 文献[17]提出了一种峰值先导深度网络（PPDN），该网络将一对具有相同表达且来自同一对象的峰值和非峰值图像作为输入，并利用L2-范数损失来最小化两个图像之间的距离。 在反向传播过程中，提出了一种峰值梯度抑制（PGS）来将非峰值表达的学习特征朝着峰值表达的特征驱动，同时避免逆运算。 因此，可以提高对低强度表达的网络判别能力。
+![Fig11](https://github.com/David-on-Code/Facial-expression-recognizition/tree/master/Datasets/Fig11.png)
+![table7](https://github.com/David-on-Code/Facial-expression-recognizition/tree/master/Datasets/Table7.png)  
+#### Deep spatio-temporal FER network  
+尽管帧聚合可以将帧整合到视频序列中，但关键的时间依存性并未得到明确利用。相比之下，时空FER网络将时间窗口中的一系列帧作为单个输入，而无需事先知道表达强度，并且利用纹理和时间信息来编码更多的细微表达。  
+与RNN相比，CNN更适合计算机视觉应用；因此，它的派生C3D沿时间轴使用权重相同的3D卷积核，而不是传统的2D核，已广泛用于基于动态的FER捕获时空特征。基于C3D，已经为FER设计了许多派生结构。将3D CNN与DPM启发的可变形面部动作约束结合在一起，以同时编码动态运动和基于部分的判别式表示（详细信息请参见图12）。  
+![图12](https://github.com/David-on-Code/Facial-expression-recognizition/tree/master/Datasets/Fig12.png)
+
+Facial  landmark  trajectory:相关的心理学研究表明，表情是通过某些面部部分（例如，眼睛，鼻子和嘴巴）的动态运动来调用的，这些动作包含最能描述表情的信息。为了获得更准确的FER面部表情，人们提出了面部界标轨迹模型来捕捉面部表情。  
+要提取界标轨迹表示，最直接的方法是将帧随时间推移的面部界标点的坐标进行归一化，以针对每个序列生成一维轨迹信号或形成像图像的map作为CNN的输入。此外，连续帧中每个界标的相对距离变化也可以用于捕获时间信息。此外，基于局部模型的模型被证明对于局部低层和全局高层特征编码都是有效的（请参见“ PHRNN”）在图13中）。Hasaniet等人（而不是单独提取轨迹特征，然后将它们输入到网络中）。通过用面部标志的元素方式乘法和残差单元的输入张量替换原始3D Inception-ResNet残差单元中的快捷方式，合并了轨迹特征。因此，可以对基于landmark的网络进行端到端训练。  
+![Fig13](https://github.com/David-on-Code/Facial-expression-recognizition/tree/master/Datasets/Fig13.png)  
+Cascaded networks:通过结合从CNN中获得的强大的感知视觉表示和LSTM在可变长度输入和输出中的优势，Donahue等人提出了一个时空深度模型，该模型将CNN的输出与LSTM进行级联，以处理涉及时变输入和输出的各种视觉任务。类似于该混合网络，已经提出了许多级联网络。  
+网络集成：用于视频中动作识别的两流CNN，它在多帧密集光流上训练CNN的一个流以获取时间信息，而在静止图像上训练CNN的另一个流以获取外观特征，然后将两个流的输出融合在一起，是由Simonyan等人提出的。受此体系结构的启发，已经为FER提出了几种网络集成模型。  
+张等将时间网络PHRNN（在“地标轨迹”中讨论）和空间网络MSCNN进行了融合，以提取FER的部分整体，几何外观和静态-动态信息（参见图13）。  
+荣格等人没有融合不同权重的网络输出。 提出了一种联合微调方法，该方法联合训练了DTAN（在“ RNN和C3D”中讨论），DTGN（在“地标轨迹”中讨论）和集成网络（有关详细信息，请参见图14），其性能优于 加权和策略。  
+![Fig14](https://github.com/David-on-Code/Facial-expression-recognizition/tree/master/Datasets/Fig14.png)  
+#### Discussion  
+
+
+
+
+
+
+
+
 
 ![overview of datasets](https://github.com/David-on-Code/Facial-expression-recognizition/blob/master/Datasets/WeChatee3dfadaf56be8150efceab7948523e7.png)
 [CK+](http://www.pitt.edu/~emotion/ck-spread.htm)  
