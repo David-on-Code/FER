@@ -103,8 +103,12 @@ Cascaded networks:通过结合从CNN中获得的强大的感知视觉表示和LS
 ##### Facial expression synthesis  
 逼真的面部表情合成可以为交互式界面生成各种面部表情，是一个热门话题。Susskindet等。证明了DBN能够捕获表现形式的大范围变化，并且可以在大型但稀疏标记的数据集上进行训练。鉴于这项工作，将DBN与无监督学习结合使用来构建面部表情合成系统。Kaneko等人提出了一种具有状态识别和关键点定位的多任务深度网络，以自适应地生成视觉反馈以改善面部表情识别。随着最近的生成模型的成功，例如变分自动编码器（VAE），对抗性自动编码器（AAE）和生成性对抗网络（GAN），基于这些模型开发了一系列面部表情合成系统。面部表情合成也可以应用于数据扩充，而无需手动收集和标记巨大的数据集。Masi等使用CNN通过增加特定于面部的外观变化（例如3D纹理面部模型中的表情）来合成新的面部图像。  
 #####  Visualization techniques  
-除了将CNN用于FER外，几项工作还对所学习的CNN功能采用了可视化技术，以定性分析CNN如何为FER的基于外观的学习过程做出贡献并定性地解密面部的哪些部分产生最有区别的信息。
-
+除了将CNN用于FER外，几项工作还对所学习到的CNN特征采用了可视化技术，以定性分析CNN如何为FER的基于外观的学习过程做出贡献并定性地解密面部的哪些部分产生最有区别的信息。反卷积结果表明，在学习到的特征上某些特定filter的激活与对应于面部AU的面部区域具有很强的相关性。  
+#### 挑战与机遇  
+#####  Facial expression datasets  
+#####  Incorporating other affective models  
+#####  Dataset bias and imbalanced distribution  
+#####  Multimodal affect recognition  
 ![overview of datasets](https://github.com/David-on-Code/Facial-expression-recognizition/blob/master/Datasets/WeChatee3dfadaf56be8150efceab7948523e7.png)
 [CK+](http://www.pitt.edu/~emotion/ck-spread.htm)  
 [MMI](https://mmifacedb.eu/)  
