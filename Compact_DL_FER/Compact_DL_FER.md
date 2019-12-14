@@ -31,6 +31,9 @@ BDBN表明，特征提取和选择与统一的增强型深度置信网络相结�
 
 $$\(y_{i} \cong \widetilde{Y}_{i}=S\left(x_{i}^{1}, \ldots, x_{i}^{T} ; \theta\right)\)$$
 
+$$
+y_{i} \cong \widetilde{Y}_{i}=S\left(x_{i}^{1}, \ldots, x_{i}^{T} ; \theta\right)
+$$
 
 
 
