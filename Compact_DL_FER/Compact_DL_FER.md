@@ -29,7 +29,7 @@ BDBN表明，特征提取和选择与统一的增强型深度置信网络相结�
 另一个重要的修改是减少完全连接的神经元的数量。我们相信，只要我们对感受野进行适当的设计，就可以通过适度的模型大小来学习人脸的表情。本文后面的实验表明，合适的轻量级全连接网络不仅模型参数紧凑，而且对于面部表情识别也很准确。  
 #### 3.3. The Frame-to-Sequence Model  
 
-$$\y_{i} \cong \widetilde{Y}_{i}=S\left(x_{i}^{1}, \ldots, x_{i}^{T} ; \theta\right)$$  
+$$\y_{i}\cong\widetilde{Y}_{i}=S\left(x_{i}^{1},\ldots,x_{i}^{T};\theta\right)$$  
   
 $$\operatorname{Ent}(D)=-\sum_{k=1}^{|\mathcal{Y}|}p_k\log_{2}{p_k}$$
 
