@@ -28,11 +28,12 @@ BDBN表明，特征提取和选择与统一的增强型深度置信网络相结�
 提议的CNN结构可以视为DTAN的改进版本。他们的实验已经表明，该简单模型可以在表情识别任务中取得良好的效果。为了进一步提高模型的识别能力，我们在最大池化之前堆叠了两个连续的卷积层。我们还使用了较大的卷积滤波器，从而使模型中的神经元具有更大的感受野。经过这种修改后，第一个完全连接层中每个神经元的感受野将变为36×36，约为输入96×96图像的14％，而原来的DTGAN为16×16，仅占输入大小为64×64的6%。  
 另一个重要的修改是减少完全连接的神经元的数量。我们相信，只要我们对感受野进行适当的设计，就可以通过适度的模型大小来学习人脸的表情。本文后面的实验表明，合适的轻量级全连接网络不仅模型参数紧凑，而且对于面部表情识别也很准确。  
 #### 3.3. The Frame-to-Sequence Model  
-<script type="text/javascript"<src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>  
+
+$$  
 \begin{equation}
 y_{i} \cong \widetilde{Y}_{i}=S\left(x_{i}^{1}, \ldots, x_{i}^{T} ; \theta\right)
 \end{equation}
-
+$$  
 
 
 
