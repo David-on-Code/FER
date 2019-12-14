@@ -30,7 +30,11 @@ BDBN表明，特征提取和选择与统一的增强型深度置信网络相结�
 #### 3.3. The Frame-to-Sequence Model  
 
 $$
-\y_{i} \cong \widetilde{Y}_{i}=S\left(x_{i}^{1}, \ldots, x_{i}^{T} ; \theta\right)
+\ y_{i} \cong \widetilde{Y}_{i}=S\left(x_{i}^{1}, \ldots, x_{i}^{T} ; \theta\right)
+$$
+
+$$
+\frac{\partial u^{(n)}}{\partial u^{(j)}}=\sum_{i : j \in P a\left(u^{(i)}\right)} \frac{\partial u^{(n)}}{\partial u^{(i)}} \frac{\partial u^{(i)}}{\partial u^{(j)}}
 $$
 
 
