@@ -33,8 +33,8 @@ $$
 \frac{\partial u^{(n)}}{\partial u^{(j)}}=\sum_{i : j \in P a\left(u^{(i)}\right)} \frac{\partial u^{(n)}}{\partial u^{(i)}} \frac{\partial u^{(i)}}{\partial u^{(j)}}
 $$
 
-$$
+$
 \y_{i} \cong \widetilde{Y}_{i}=S\left(x_{i}^{1}, \ldots, x_{i}^{T} ; \theta\right)
-$$
+$
 
 
