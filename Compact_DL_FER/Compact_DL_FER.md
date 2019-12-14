@@ -30,7 +30,7 @@ BDBN表明，特征提取和选择与统一的增强型深度置信网络相结�
 #### 3.3. The Frame-to-Sequence Model  
 
 $$\begin{array}{ll}{
-\operatorname{min}} & {\sum\limits_{k=1}^{n} x_{k} \log _{2} x_{k} } \\ 
+\operatorname{min}} & {\sum\limits_{k=1}^{n} x_{k} \log _ {2} x_{k} } \\ 
 {\text { s.t. }} & {\sum\limits_{k=1}^{n}x_k=1} 
 \end{array}$$
 
