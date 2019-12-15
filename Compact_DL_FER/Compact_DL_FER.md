@@ -44,6 +44,7 @@ $
 \left\{p_{1}^{t}(j), j=1, \dots, m\right\}
 \end{equation}
 $
+$\(\left\{p_{1}^{t}(j), j=1, \dots, m\right\}\)$
 所以最大概率索引$p_{i}^{t}(j), \widetilde{y}_ {i}$像正确类别$y_{i}$一样,如  
 $$y_{i} \cong \widetilde{y}_{i}=\underset{j}{\arg \max } p_{i}^{t}(j)=F\left(x_{i}\right), --(3)$$  
 $$p_{i}^{t}=F\left(x_{i}\right)=\left[p_{i}^{t}(1), p_{i}^{t}(2), \ldots, p_{i}^{t}(m)\right]$$  
