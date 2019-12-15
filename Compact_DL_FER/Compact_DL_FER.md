@@ -19,12 +19,12 @@ BDBN表明，特征提取和选择与统一的增强型深度置信网络相结�
 最近，通过将从大规模人脸识别数据库中学习到的知识进行转移，峰值引导方法成功地将GoogLeNet应用于表情识别。 他们的结果还表明，基于图像的方法的准确性与基于序列的方法的准确性相当。  
 #### 3. Proposed Framework   
 所提出的深度学习方法的总体流程如图1所示。我们的框架由两个模块组成：人脸预处理和CNN分类。为了确保我们的框架可以扩展到不同的场景，我们不采用任何时间标准化
-方法。  ![Fig1]()  
+方法。  ![Fig1](https://github.com/David-on-Code/Facial-expression-recognizition/blob/master/Compact_DL_FER/Fig1.png)  
 ##### 3.1. Preprocessing   
-我们首先根据IntraFace检测到的landmarks裁剪面部区域。这些landmarks可用于提取眉毛，眼睛，鼻子和嘴巴的轮廓。大crop可以保留更多信息，而小crop可以减少背景噪声或头部轮廓。裁剪后的图像尺寸 ![formula1]() 其中dv是the uppermost landmark point和the lowermost landmark point之间的距离, dh和the the leftmost landmark point和the rightmost landmark point之间的水平距离, α是用于控制面部区域大小的常量。对于所有实验，我们将α设置为1.05。  
+我们首先根据IntraFace检测到的landmarks裁剪面部区域。这些landmarks可用于提取眉毛，眼睛，鼻子和嘴巴的轮廓。大crop可以保留更多信息，而小crop可以减少背景噪声或头部轮廓。裁剪后的图像尺寸$L=\alpha \times \max \left(d_{v}, d_{h}\right)$其中$d_{v}$是the uppermost landmark point和the lowermost landmark point之间的距离, $d_{h}$和the the leftmost landmark point和the rightmost landmark point之间的水平距离, α是用于控制面部区域大小的常量。对于所有实验，我们将α设置为1.05。  
 一旦确定了裁剪的大小L，我们在鼻子的landmark上裁剪脸部区域中心，并获得适度的脸部图像以进行模型训练。将裁剪后的图像调整为固定尺寸120×120，然后将其发送到CNN分类器进行表情识别。  
 ##### 3.2. The CNN Model   
-我们的CNN模型的架构如图2所示。 ![]() 模型由两个卷积和池化块，然后是两个全连接层，使用ReLU作为每个卷积层的激活函数。在全连接层后应用下采样以防止过拟合。注意，该模型仅将调整后的面部图像的中心96×96部分用作输入。有关模型训练的详细信息将在下一部分中描述。  
+我们的CNN模型的架构如图2所示。 ![图二](https://github.com/David-on-Code/Facial-expression-recognizition/blob/master/Compact_DL_FER/Fig2.png) 模型由两个卷积和池化块，然后是两个全连接层，使用ReLU作为每个卷积层的激活函数。在全连接层后应用下采样以防止过拟合。注意，该模型仅将调整后的面部图像的中心96×96部分用作输入。有关模型训练的详细信息将在下一部分中描述。  
 提议的CNN结构可以视为DTAN的改进版本。他们的实验已经表明，该简单模型可以在表情识别任务中取得良好的效果。为了进一步提高模型的识别能力，我们在最大池化之前堆叠了两个连续的卷积层。我们还使用了较大的卷积滤波器，从而使模型中的神经元具有更大的感受野。经过这种修改后，第一个完全连接层中每个神经元的感受野将变为36×36，约为输入96×96图像的14％，而原来的DTGAN为16×16，仅占输入大小为64×64的6%。  
 另一个重要的修改是减少完全连接的神经元的数量。我们相信，只要我们对感受野进行适当的设计，就可以通过适度的模型大小来学习人脸的表情。本文后面的实验表明，合适的轻量级全连接网络不仅模型参数紧凑，而且对于面部表情识别也很准确。  
 #### 3.3. The Frame-to-Sequence Model  
@@ -42,7 +42,7 @@ $$p_{i}^{t}=F\left(x_{i}\right)=\left[p_{i}^{t}(1), p_{i}^{t}(2), \ldots, p_{i}^
 这里，我们使用从CNNs计算出的概率分布序列进行基于帧的表情识别，而不是使用图像作为表情识别的输入,这意味着  
 $y_{i} \cong \widetilde{Y}_ {i}=S\left(F\left(x_{i}^{1}\right), \ldots, F\left(x_{i}^{T}\right) ; \theta\right)$ --(4)  
 用Gated Recurrent Neural Network建模S(x)。由于我们将概率分布用于基于帧的分类作为特征表示，我们期望S(x)可以由浅层结构很好地建模。我们的帧到序列模型的架构由具有128个隐藏层的单个门控循环单元（GRU）层和一个softmax层组成。 总体框架如图3所示。
-![图3]()
+![图3](https://github.com/David-on-Code/Facial-expression-recognizition/blob/master/Compact_DL_FER/Fig3.png)
 
 
 
