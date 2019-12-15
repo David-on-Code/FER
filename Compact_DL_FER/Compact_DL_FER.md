@@ -28,10 +28,10 @@ BDBN表明，特征提取和选择与统一的增强型深度置信网络相结�
 提议的CNN结构可以视为DTAN的改进版本。他们的实验已经表明，该简单模型可以在表情识别任务中取得良好的效果。为了进一步提高模型的识别能力，我们在最大池化之前堆叠了两个连续的卷积层。我们还使用了较大的卷积滤波器，从而使模型中的神经元具有更大的感受野。经过这种修改后，第一个完全连接层中每个神经元的感受野将变为36×36，约为输入96×96图像的14％，而原来的DTGAN为16×16，仅占输入大小为64×64的6%。  
 另一个重要的修改是减少完全连接的神经元的数量。我们相信，只要我们对感受野进行适当的设计，就可以通过适度的模型大小来学习人脸的表情。本文后面的实验表明，合适的轻量级全连接网络不仅模型参数紧凑，而且对于面部表情识别也很准确。  
 #### 3.3. The Frame-to-Sequence Model  
-标准面部表情数据库中的图像序列通常以中性表情开始，然后逐渐发展为峰值表情。我们可以用一个模型$S(x)$来近似这个转换过程，使用一系列图像$x_{i}^{t}, t=1, \ldots, T$作为输入，并且将每个图像序列映射到其ground truth$y_{i}$尽可能近：
+标准面部表情数据库中的图像序列通常以中性表情开始，然后逐渐发展为峰值表情。我们可以用一个模型$S(x)$来近似这个转换过程，使用一系列图像$x_{i}^{t}, t=1, \ldots, T$作为输入，并且将每个图像序列映射到其ground truth$y_{i}$尽可能近：  
 $
 y_{i} \cong \widetilde{Y}_ {i}=S\left(x_{i}^{1}, \ldots, x_{i}^{T} ; \theta\right), --(1)
-$  
+$   
 T是图像序列的长度，$\theta$是一组模型参数。$p$表示由序列模型产生的每个表情的概率，序列建模问题可以表述为在给定训练序列的情况下最大化模型的对数似然性，即，  
 $$
 \hat{\theta}=\underset{\theta}{\arg \max } \frac{1}{N} \sum_{i=1}^{N} \log p\left(\widetilde{Y}_ {i} | x_{i}^{1}, \ldots, x_ {i}^{T} ; \theta\right), --(2)
@@ -43,8 +43,19 @@ $$p_{i}^{t}=F\left(x_{i}\right)=\left[p_{i}^{t}(1), p_{i}^{t}(2), \ldots, p_{i}^
 这里，我们使用从CNNs计算出的概率分布序列进行基于帧的表情识别，而不是使用图像作为表情识别的输入,这意味着  
 $y_{i} \cong \widetilde{Y}_ {i}=S\left(F\left(x_{i}^{1}\right), \ldots, F\left(x_{i}^{T}\right) ; \theta\right)$ --(4)  
 用Gated Recurrent Neural Network建模S(x)。由于我们将概率分布用于基于帧的分类作为特征表示，我们期望S(x)可以由浅层结构很好地建模。我们的帧到序列模型的架构由具有128个隐藏层的单个门控循环单元（GRU）层和一个softmax层组成。 总体框架如图3所示。
-![图3](https://github.com/David-on-Code/Facial-expression-recognizition/blob/master/Compact_DL_FER/Fig3.png)
+![图3](https://github.com/David-on-Code/Facial-expression-recognizition/blob/master/Compact_DL_FER/Fig3.png)  
+##### 3.4. Model Training  
+小的面部表情识别数据集通常有几百图像序列，在模型训练时很容易导致过拟合问题。对于模型训练，我们使用水平反转和随机移动(random shifting)的在线数据增强。在文章中，设置最大迭代次数2000epoches并报告用于训练的CNN模型的最佳验证准确性。对于帧到序列模型，使用ADAM优化器作为模型训练并使用48batch大小和固定学习率0.01迭代10000次。  
+#### 4. Experiments on Standard Databases  
+标准面部表情识别数据库一般包含从中性表情到峰值表情的视频序列。对于基于帧的方法，我们只使用峰值图像作为训练和验证。我们首先在两个知名标准数据库上评估提出的架构：the Extended Cohn-Kanade (CK+) database and the Oulu-CASIA database。CK+数据库由327个标记有7种情感的图像序列组成：anger,contempt, disgust, fear, happiness, sadness, and surprise。Oulu-CASIA数据库包含480个有六种情感标签的图像序列组成：anger,disgust, fear, happiness,sadness, surprise。 CK+ and Oulu-CASIA数据的大小分别是640x490和320x320.这些数据库的详细信息在表4.对于CNN模型的训练，所有加权层通过xavier初始化，学习率固定为0.001，动量设为0.9 。权重衰减方法也用于正则化，系数为0.001 。  
+##### 4.1. Frame-based Approach  
+为了避免受试者同时出现在训练和测试集中，我们按照ID升序将其分为10个子集，这与10折交叉验证方案相同。该实验方案用于本文实验比较中包含的所有方法。表1显示了CK +数据库上10折交叉验证的总体准确性。我们基于框架的方法的准确性优于大多数基于序列的方法，仅次于峰引导方法。然而，在[47]中，它们使用CK+ 数据库一千倍大小的500K张图像预训练CNN模型。结果表明提出的CNN模型非常适合在小的数据库上学习面部表情。  
 
 
 
 
+
+
+
+
+[47]X. Zhao, X. Liang, L. Liu, T. Li, Y. Han, N. Vasconcelos,and S. Yan. Peak-piloted deep network for facial expression recognition. In European Conference on Computer Vision,pages 425–442. Springer, 2016.
