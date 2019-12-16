@@ -84,11 +84,8 @@ $I_{w s}(x, y)=(1-\lambda) \times I_{h e}(x, y)+\lambda \times I_{l m}(x, y)$ ,$
 在两个公开wild数据集（MPLab-GENKI数据集和the newest Real-world Affective Faces (RAF)数据集）上测试所提出的框架。如表4所示，由于RAF数据库存在严重的数据失衡问题，因此我们以较少的样本复制了班级中的图像数量，因此模型在训练过程中会更频繁地看到那些稀有样本。  
 对于GENKI数据集，我们的模型通过使用先前工作中使用的4折交叉验证方案实现了95.33％的平均准确度和0.34％的标准偏差，如表7所示。即使GENKI数据集只有两类：微笑和非微笑，它仍然是具有挑战性的数据集，其面部部分的分辨率非常低。检测到的最小脸部图像仅具有约20 x 20像素的分辨率。我们发现，提出的光明增强策略无法提高精度，因为GENKI数据集中的大多数图像都是在光照良好的条件下捕获的，并且在该数据集上的精度已经接近饱和。 但是，通过我们的方法获得的结果仍是最好的，无需进一步调整即可获得。  
 对于RAF数据库，我们的模型在其评估指标下达到了65.52％的准确度，通过提出的光照增强策略，该性能可以进一步提高到67.55％。我们的结果具有竞争力，因为VGG和AlexNet模型的准确率分别达到58.22％和55.60％。 但是，我们的模型尺寸要小得多。 它仅是前两个模型的5％。 即使我们的结果不如DLP-CNN [32]所报告的最佳准确性74.20％，但是我们的模型使用的参数却少了87.45％。 此外，所有其他模型仅用于特征提取，并且需要额外的多类SVM作为分类器，而我们的CNN模型提供了端到端的表情识别系统。如表6所示，与直接训练相比，使用光照增强的训练在厌恶和恐惧类别上均能达到更高的准确性，它们通常更难以分类。平均精度的提高和不同情感表现下标准偏差的减少也表明，提出的光照增强策略可以帮助CNN模型学习更通用的特征表示，如我们在上一节中提到的。
-![]()
-![表7](https://github.com/David-on-Code/Facial-expression-recognizition/blob/master/Compact_DL_FER/Table7.png)
-
-
-
-
-
+![表6](https://github.com/David-on-Code/Facial-expression-recognizition/blob/master/Compact_DL_FER/Table6.png)
+![表7](https://github.com/David-on-Code/Facial-expression-recognizition/blob/master/Compact_DL_FER/Table7.png)  
+#### 7. Conclusion  
+在本文中，提出了一种用于面部表情识别的新型CNN架构，其性能优于最新方法。帧到序列方法成功地利用了时间信息，并提高了在公共基准数据库的准确性。所提出的框架被证明可以在保持较高参数效率的同时提供更好的通用性，这对于便携式设备上的应用而言是一个非常重要的问题。实验结果表明，该系统为多种数据集的面部表情识别提供了最新的准确性。我们还证明，通过在公众“in the wild”数据库中进行实验，提出的光照增强策略非常有效。  
 [47]X. Zhao, X. Liang, L. Liu, T. Li, Y. Han, N. Vasconcelos,and S. Yan. Peak-piloted deep network for facial expression recognition. In European Conference on Computer Vision,pages 425–442. Springer, 2016.
