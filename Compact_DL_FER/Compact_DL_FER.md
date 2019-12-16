@@ -60,23 +60,31 @@ $y_{i} \cong \widetilde{Y}_ {i}=S\left(F\left(x_{i}^{1}\right), \ldots, F\left(x
 ##### 4.3. Implementation for Real-World Applications  
 在上一节中，我们证明了该方法在准确性和泛化方面均优于以前的方法。 但是，考虑到实际应用，不可避免的问题是硬件存储和计算能力的限制。 由标准数据库开发的系统很难在实践中应用，因为几乎所有面部图像都是这些数据集中的正面面部。  
 ##### 4.4. Parameter Efficiency  
-为了客服硬件存储限制，我们进一步减少我们CNN结构中卷积核的个数。提出的CNN模型的小版本仅使用16个滤波器在前两个卷积层和32个滤波器在后两个卷积层，是原先版本滤波器数量的25%和50%。重复与之前描述的相同的10折验证，结果如表三所示[表三](https://github.com/David-on-Code/Facial-expression-recognizition/blob/master/Compact_DL_FER/Table3.png)。即使此修改会导致精度下降，与原版本相比，小模型仅使用50%参数，比最好的CNN模型少80%。少量的参数使该微型模型适用于具有适中存储大小的便携式设备或物联网应用。 微型模型的平均推断时间也从单个NVIDIA GTX 970 GPU的21ms减少到了16ms。  
+为了客服硬件存储限制，我们进一步减少我们CNN结构中卷积核的个数。提出的CNN模型的小版本仅使用16个滤波器在前两个卷积层和32个滤波器在后两个卷积层，是原先版本滤波器数量的25%和50%。重复与之前描述的相同的10折验证，结果如表三所示 ![表三](https://github.com/David-on-Code/Facial-expression-recognizition/blob/master/Compact_DL_FER/Table3.png)。即使此修改会导致精度下降，与原版本相比，小模型仅使用50%参数，比最好的CNN模型少80%。少量的参数使该微型模型适用于具有适中存储大小的便携式设备或物联网应用。 微型模型的平均推断时间也从单个NVIDIA GTX 970 GPU的21ms减少到了16ms。  
 #### 5. Experiments on Self-Collected Databases
 面部表情数据集的收集很昂贵而且消耗时间。研究指出，使用从Internet下载的图像有助于对表情识别问题进行模型训练。为此，我们收集了三个额外的数据集来改善面部表情识别的训练，每个数据集代表特定的数据源。此外，为了防止主观注释，我们收集的每个数据集都用不同的方法标记以确保注释质量。我们收集的所有数据集均由六个常见表情（如Oulu-CASIA数据库[46]）和一个附加的中性表情组成，因为中性面孔最常出现。这些数据集在下文中分别称为集合A，集合B和集合C。  
 收集集合A代表笔记本电脑场景中的应用程序。在此数据集中，我们有26个受试者，每个受试者都被要求坐在实验室的椅子上，并观看一系列视频，这些视频导致受试者脸上的表情各异。通过三个网络摄像头同时从不同的近前视角记录了整个观看过程，以丰富头部姿势的变化。 在受试者完成任务后，我们要求他们自己注释时间间隔和相关的表情。然后，我们根据对象的标签清理这些视频剪辑，以仅提取具有峰值表情的帧。 为确保所有表情的数据服从均匀分布，我们为每个类别采样了50张图像。  
 集合B是从Google图片搜索引擎收集的，其中包含愤怒的面孔或中性的面孔等关键字，然后使用所用的关键字对搜索结果进行注释。与A组相比，从Internet下载的图像通常具有更多的头部姿势变化，遮挡甚至水印，这可能会使系统从标准角度进行训练数据集很容易失败。  
 C组中的图像是从电影，戏剧，新闻或电视节目中收集的，然后根据其故事情节或场景对这些图像进行标记。即使集合C也像集合B一样从Internet收集，它们也有很大的不同。从电影中捕获的人脸图像通常包含强烈的照明对比度和较大的头部姿势变化，这使得该数据集中的样本比集合B更为复杂。我们在图4中描述了附加数据库的一些示例，这些数据库的列表在表4中给出。  
-[图4](https://github.com/David-on-Code/Facial-expression-recognizition/blob/master/Compact_DL_FER/Fig4.png)
-[表4](https://github.com/David-on-Code/Facial-expression-recognizition/blob/master/Compact_DL_FER/Table4.png)
+![图4](https://github.com/David-on-Code/Facial-expression-recognizition/blob/master/Compact_DL_FER/Fig4.png)
+![表4](https://github.com/David-on-Code/Facial-expression-recognizition/blob/master/Compact_DL_FER/Table4.png)
 ##### 5.1. Leave-One-Set-Out Experiments  
 泛化能力描述了框架在实践中的可行性。 为了研究具有未知数据类型的CNN模型泛化的难度，我们使用具有混合数据类型的数据集训练了我们的小模型，然后在另一种数据类型上进行了泛化评估，这被称为留一法实验。我们在Oulu-CASIA数据库中选择愤怒类别的第一帧作为其中性样本，以便可以在以下实验中使用。此实验中还包括另一个高质量且姿势良好的数据库TFEID。  
 在“一站式”实验中，我们使用我们的微型模型进行评估，该模型具有相同的超参数设置，并且具有前面所述的10折验证部分。实验结果显示在表5的第一行中。TFEID数据库的高验证准确性表明，使用混合数据类型进行模型训练仍可以学习一种可以很好地推广到理想情况的表示形式，例如具有强烈表情的正面人脸图像。Oulu-CASIA数据库的性能低下可能是由于训练数据中的偏差，该数据主要由亚洲人的面部样本组成。 然而，在模型训练中我们可以通过适当的增强策略来提高识别的准确性。  
-[表5](https://github.com/David-on-Code/Facial-expression-recognizition/blob/master/Compact_DL_FER/Table5.png)
+![表5](https://github.com/David-on-Code/Facial-expression-recognizition/blob/master/Compact_DL_FER/Table5.png)
 在“一站式”实验中，我们使用我们的微型模型进行评估，该模型具有相同的超参数设置，并且具有前面所述的10折验证部分。实验结果显示在表5的第一行中。TFEID数据库的高验证准确性表明，使用混合数据类型进行模型训练仍可以学习一种可以很好地推广到理想情况的表示形式，例如具有强烈表情的正面人脸图像。Oulu-CASIA数据库的性能低下可能是由于训练数据中的偏差，该数据主要由亚洲人的面部样本组成。 然而，在模型训练中我们可以通过适当的增强策略来提高识别的准确性。  
 ##### 5.2. Illumination Normalization  
 从Internet收集的图像数据通常带有多种照明条件，可能会阻碍模型训练。 亮度标准化被广泛用于各种计算机视觉任务中。 我们采用直方图均衡[31]和线性映射，该映射通过线性变换将最小和最大像素值映射到区间[0，1]，以进行比较。但是，直接应用直方图均衡化可能会过分强调局部对比度，如图5所示，并且当图像已经具有较大的全局对比度时，线性映射不能很好地工作。 因此，我们提出一种加权求和方法来利用两种归一化方法：  
-$I_{w s}(x, y)=(1-\lambda) \times I_{h e}(x, y)+\lambda \times I_{l m}(x, y)$ ,$lambda$是权重系数,决定从直方图均衡图像$I_{h e}$和线性映射图像$I_{l m}$占组合图像$I_{w s}的像素比例，在实现中将${lambda}$设置为0.5。一些结果显示在图5的最右列中
-[图5](https://github.com/David-on-Code/Facial-expression-recognizition/blob/master/Compact_DL_FER/Fig5.png)
+$I_{w s}(x, y)=(1-\lambda) \times I_{h e}(x, y)+\lambda \times I_{l m}(x, y)$ ,$lambda$是权重系数,决定从直方图均衡图像$I_{h e}$和线性映射图像$I_{l m}$占组合图像$I_{w s}的像素比例，在实现中将${lambda}$设置为0.5。一些结果显示在图5的最右列中。尽管线性映射在所有这些方法中带来了最大的性能提升，但使用集合B作为验证时，加权求和方法仍可实现最高的改进，约为6.5％。
+![图5](https://github.com/David-on-Code/Facial-expression-recognizition/blob/master/Compact_DL_FER/Fig5.png)  
+##### 5.3. Illumination Augmentation
+为了利用所有上述归一化方法，一个直观的想法是将它们全部用作训练数据以形成光照增强方法。为了进行验证，我们仍然仅使用上述一种标准化方法来使整个框架在分类过程中保持简洁。 如表5的下面四行所示，验证集无论采用哪种标准化方法，使用提出的光照增强策略实际上都会提高总体准确性。![表5](https://github.com/David-on-Code/Facial-expression-recognizition/blob/master/Compact_DL_FER/Table5.png)  
+更有趣的是，如果我们仅应用一种归一化策略，则直方图均衡化方法是唯一会降低平均预测准确性的方法。但是，当我们采用提出的光照增强策略并且仅对验证数据应用直方图均衡时，我们将获得最大的性能提升。对此现象的一种可能解释是，混合光照归一化方法可以促进CNN模型学习到的画像（representation），在训练过程中可以更好地抵抗光照变化。  
+#### 6. Experiments on ”In The Wild” Databases
+在两个公开wild数据集（MPLab-GENKI数据集和the newest Real-world Affective Faces (RAF)数据集）上测试所提出的框架。如表4所示，由于RAF数据库存在严重的数据失衡问题，因此我们以较少的样本复制了班级中的图像数量，因此模型在训练过程中会更频繁地看到那些稀有样本。
+
+
+
 
 
 [47]X. Zhao, X. Liang, L. Liu, T. Li, Y. Han, N. Vasconcelos,and S. Yan. Peak-piloted deep network for facial expression recognition. In European Conference on Computer Vision,pages 425–442. Springer, 2016.
