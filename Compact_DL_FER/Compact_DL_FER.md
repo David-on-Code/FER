@@ -71,8 +71,8 @@ C组中的图像是从电影，戏剧，新闻或电视节目中收集的，然�
 在“一站式”实验中，我们使用我们的微型模型进行评估，该模型具有相同的超参数设置，并且具有前面所述的10折验证部分。实验结果显示在表5的第一行中。TFEID数据库的高验证准确性表明，使用混合数据类型进行模型训练仍可以学习一种可以很好地推广到理想情况的表示形式，例如具有强烈表情的正面人脸图像。Oulu-CASIA数据库的性能低下可能是由于训练数据中的偏差，该数据主要由亚洲人的面部样本组成。 然而，在模型训练中我们可以通过适当的增强策略来提高识别的准确性。  
 ##### 5.2. Illumination Normalization  
 从Internet收集的图像数据通常带有多种照明条件，可能会阻碍模型训练。 亮度标准化被广泛用于各种计算机视觉任务中。 我们采用直方图均衡[31]和线性映射，该映射通过线性变换将最小和最大像素值映射到区间[0，1]，以进行比较。但是，直接应用直方图均衡化可能会过分强调局部对比度，如图5所示，并且当图像已经具有较大的全局对比度时，线性映射不能很好地工作。 因此，我们提出一种加权求和方法来利用两种归一化方法：  
-$I_{w s}(x, y)=(1-\lambda) \times I_{h e}(x, y)+\lambda \times I_{l m}(x, y)$ ,$lambda$是权重系数决定,
-
+$I_{w s}(x, y)=(1-\lambda) \times I_{h e}(x, y)+\lambda \times I_{l m}(x, y)$ ,$lambda$是权重系数,决定从直方图均衡图像$I_{h e}$和线性映射图像$I_{l m}$占组合图像$I_{w s}的像素比例，在实现中将${lambda}$设置为0.5。一些结果显示在图5的最右列中
+[图5]()
 
 
 [47]X. Zhao, X. Liang, L. Liu, T. Li, Y. Han, N. Vasconcelos,and S. Yan. Peak-piloted deep network for facial expression recognition. In European Conference on Computer Vision,pages 425–442. Springer, 2016.
