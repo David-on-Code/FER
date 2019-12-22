@@ -87,5 +87,5 @@ $I_{w s}(x, y)=(1-\lambda) \times I_{h e}(x, y)+\lambda \times I_{l m}(x, y)$ ,$
 ![表6](https://github.com/David-on-Code/Facial-expression-recognizition/blob/master/Compact_DL_FER/Table6.png)
 ![表7](https://github.com/David-on-Code/Facial-expression-recognizition/blob/master/Compact_DL_FER/Table7.png)  
 #### 7. Conclusion  
-在本文中，提出了一种用于面部表情识别的新型CNN架构，其性能优于最新方法。帧到序列方法成功地利用了时间信息，并提高了在公共基准数据库的准确性。所提出的框架被证明可以在保持较高参数效率的同时提供更好的通用性，这对于便携式设备上的应用而言是一个非常重要的问题。实验结果表明，该系统为多种数据集的面部表情识别提供了最新的准确性。我们还证明，通过在公众“in the wild”数据库中进行实验，提出的光照增强策略非常有效。  
+在本文中，提出了一种用于面部表情识别的新型CNN架构，其性能优于最新方法。帧到序列方法成功地利用了时间信息，并提高了在公共基准数据库的准确性。所提出的框架被证明可以在保持较高参数效率的同时提供更好的通用性，这对于便携式设备上的应用而言是一个非常重要的问题。实验结果表明，该系统为多种数据集的面部表情识别提供了最新的准确性。我们还证明，通过在公共“in the wild”数据库中进行实验，提出的光照增强策略非常有效。  
 [47]X. Zhao, X. Liang, L. Liu, T. Li, Y. Han, N. Vasconcelos,and S. Yan. Peak-piloted deep network for facial expression recognition. In European Conference on Computer Vision,pages 425–442. Springer, 2016.
