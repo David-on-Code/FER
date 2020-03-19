@@ -21,4 +21,10 @@ Overall, contributions总结如下，
 ### 2.1. Facial Expression Recognition  
 Generally,一个FER系统主要由三阶段组成，face detection, feature extraction, and expression recognition。  
 ### 2.2. Learning with Uncertainties  
- 
+Particularly,   
+## 3. Self-Cure Network  
+SCN基于传统CNNs并由三个关键模块组成：  
+ i) self-attention importance weight- ing,   
+ ii) ranking regularization, and   
+ iii) relabeling,  
+### 3.1. Overview of Self-Cure Network  
