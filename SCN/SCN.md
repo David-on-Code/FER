@@ -28,3 +28,9 @@ SCN基于传统CNNs并由三个关键模块组成：
  ii) ranking regularization, and   
  iii) relabeling,  
 ### 3.1. Overview of Self-Cure Network  
+![F2]()
+Self-Cure Network流程。首先面部图像喂给主干CNN来提取特征。
+self-attention importance weighting module 从面部特征学习样本权重得到损失权重。
+rank regularization module以样本权重为输入并用排序操作和margin-based的损失函数约束它们。
+relabeling module寻找可信赖的样本,通过比较最大预测概率与给定标签的概率。
+贴错标签的样本用红色实线矩形标记，模糊的样品用绿色间断线标记。
