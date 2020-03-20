@@ -46,18 +46,15 @@ For a multi-class Cross-Entropy loss, we call our weighted loss as Logit-Weighte
 ### 3.3. Rank Regularization
 self-attention weights归于（0，1）。在rank regularization module，首先将学习的注意力权重按降序排列，然后以比例$\beta$将其分为两组。排序正则化确保高重要性组的平均注意权重高于低重要性组一个margin。定义rank regularization loss (RR-Loss)，
 ![34]()
-$\delta_1$是一个margin，可以是固定的超参数或者学习到的参数，$\alpha_H$和$\alpha_L$分别是高重要性组$/beta* N=M$个样本和低重要性组$N-M$个样本。训练时，整个损失函数是$\mathcal{L}_ all=\gamma\mathcal{L}_ {RR}+(1-\gamma)\mathcal{L}_ {WCE}$，$gamma$是权衡比例。  
+$\delta_1$是一个margin，可以是固定的超参数或者学习到的参数，$\alpha_H$和$\alpha_L$分别是高重要性组$\beta* N=M$个样本和低重要性组$N-M$个样本。训练时，整个损失函数是$\mathcal{L}_ {all}=\gamma\mathcal{L}_ {RR}+(1-\gamma)\mathcal{L}_ {WCE}$，$gamma$是权衡比例。  
 ### 3.4. Relabeling  
-
-
-
-
-
+在rank regularization module，每个mini-batch分为两组，the high-importance 和 the low- importance groups.
 修改这些标注的主要挑战是知道哪个标注是错误的。
 Specifically, relabeling module近考虑在low-importance  group中的样本并执行Softmax概率。对于每个样本，我们将最大预测概率与给定标签的概率进行比较。如果最大预测概率高于给定标签的阈值，则将样本分配给新的伪标签。Formally,relabeling module定义为，
 ![5]()
 $y'$表示新标签，$\delta_{2}$是下限，$P_{max}$是最大的预测可能性，$P_{gtInd}$是给定标签的预测可能性。$l_{org}$和$l_{max}$分别是起始给定的标签和最大预测的索引。  
 在我们的系统中，不确定的样本有望获得较低的重要权重，从而随着重新加权而降低其负面影响，然后落入低重要性组，最后可以通过重新标记将其校正为确定样本。这些校正后的样本可能在下一个epoch获得较高的重要权重。我们希望可以通过重新加权或重新标记自身来修复网络，这就是为什么我们将我们的方法称为自修复网络的原因。  
 ### 3.5. Implementation
-$y'$表示新标签，$\delta_{2}$是下限，$P_{max}$是最大的预测可能性，$P_{gtInd}$是给定标签的预测可能性。$l_{org}$和$l_{max}$分别是起始给定的标签和最大预测的索引。  在我们的系统中，不确定的样本有望获得较低的重要权重，从而随着重新加权而降低其负面影响，然后落入低重要性组，最后可以通过重新标记将其校正为确定样本。
+ Pre-processing and facial features. 在SCN，面部图像检测和对齐通过MTCNN并resized到224x224大小。SCN由Pytorch和ResNet18实现。ResNet-18在MS-Celeb-1M面部识别数据集上预训练，面部特征从最后池化层抽取。  
+ Training。
 $<I_{input},I_{target}>$,用来训练cGANs,$I_{input}$
