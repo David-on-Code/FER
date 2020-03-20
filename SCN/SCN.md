@@ -37,5 +37,5 @@ relabeling module寻找可信赖的样本,通过比较最大预测概率与给�
 修改这些标注的主要挑战是知道哪个标注是错误的。
 Specifically, relabeling module近考虑在low-importance  group中的样本并执行Softmax概率。对于每个样本，我们将最大预测概率与给定标签的概率进行比较。如果最大预测概率高于给定标签的阈值，则将样本分配给新的伪标签。Formally,relabeling module定义为，
 ![5]()
-$y'$
+$y'$表示新标签，$\delta_{2}$
 $<I_{input},I_{target}>$,用来训练cGANs,$I_{input}$
