@@ -36,7 +36,7 @@ relabeling module寻找可信赖的样本,通过比较最大预测概率与给�
 贴错标签的样本用红色实线矩形标记，模糊的样品用绿色间断线标记。值得注意的是，SCN主要依靠重新加权操作来抑制这些不确定性，并且仅修改一些不确定性样本。  
 给定一批带有一些不确定样本的面部图像，首先提取深度特征。self-attention importance weighting module为每个图像分配重要权重使用全连接层（FC）和sigmoid函数。这些权重乘以样本重新加权方案的对数。rank regularization module 调整权重。在这个模块，排序学习的权重并分为两组，high和low。通过margin-based loss约束这些组的平均权重，称为rank regularization loss (RR-Loss)。relabeling module修正low组中的不确定样本。此重新标记操作旨在收集更多干净的样本，然后增强最终模型。可以以端到端的方式训练整个SCN，并轻松地将其添加到任何CNN主干中。  
 ### 3.2. Self-Attention Importance Weighting  
-$F=[x_{1},x_{2},...,x_{N}]\in$$R^{D\cdotN}$
+$F=[x_{1},x_{2},...,x_{N}]\in$$R^{D*N}$
   
 修改这些标注的主要挑战是知道哪个标注是错误的。
 Specifically, relabeling module近考虑在low-importance  group中的样本并执行Softmax概率。对于每个样本，我们将最大预测概率与给定标签的概率进行比较。如果最大预测概率高于给定标签的阈值，则将样本分配给新的伪标签。Formally,relabeling module定义为，
