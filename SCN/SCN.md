@@ -33,4 +33,7 @@ Self-Cure Network流程。首先面部图像喂给主干CNN来提取特征。
 self-attention importance weighting module 从面部特征学习样本权重得到损失权重。
 rank regularization module以样本权重为输入并用排序操作和margin-based的损失函数约束它们。
 relabeling module寻找可信赖的样本,通过比较最大预测概率与给定标签的概率。
-贴错标签的样本用红色实线矩形标记，模糊的样品用绿色间断线标记。
+贴错标签的样本用红色实线矩形标记，模糊的样品用绿色间断线标记。值得注意的是，SCN主要依靠重新加权操作来抑制这些不确定性，并且仅修改一些不确定性样本。  
+修改这些标注的主要挑战是知道哪个标注是错误的。
+Specifically, relabeling module近考虑在low-importance  group中的样本并执行Softmax概率。对于每个样本，我们将最大预测概率与给定标签的概率进行比较。如果最大预测概率高于给定标签的阈值，则将样本分配给新的伪标签。Formally,relabeling module定义为，
+![5]()
